@@ -58,3 +58,22 @@ export let GetToDoByID = async (req: any, res: any) => {
     });
   }
 };
+
+export let UpdateToDo = async (req: any, res: any) => {
+  try {
+    let id: string = req.params.id;
+    let new_details: ToDoInterface = req.body;
+    let todo = await ToDo.findByIdAndUpdate(id, new_details, { new: true });
+    res.status(200).json({
+      status: "success",
+      data: {
+        todo,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "failed",
+      msg: "PATCH ERROR: Update ToDo Error",
+    });
+  }
+};
