@@ -10,7 +10,7 @@ let ToDoSchema = new mongoose.Schema({
     required: false,
   },
   createdAt: {
-    type: Date,
+    type: String,
     required: [true, "Created At Field in Missing"],
   },
 });
