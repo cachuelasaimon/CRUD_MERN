@@ -77,3 +77,19 @@ export let UpdateToDo = async (req: any, res: any) => {
     });
   }
 };
+
+export let DeleteToDo = async (req: any, res: any) => {
+  try {
+    let id = req.params.id;
+    await ToDo.findByIdAndDelete(id);
+    res.status(200).json({
+      status: "success",
+      msg: "Delete Success",
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "failed",
+      msg: "DELETE ERROR: Delete ToDo Error",
+    });
+  }
+};
