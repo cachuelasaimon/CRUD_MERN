@@ -16,7 +16,10 @@ export let GetAllToDos = async (req: any, res: any) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    res.status(400).json({
+      status: "failed",
+      msg: "GET ERROR: Get ToDo Error",
+    });
   }
 };
 
@@ -31,6 +34,27 @@ export let CreateToDo = async (req: any, res: any) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    res.status(400).json({
+      status: "failed",
+      msg: "POST ERROR: Create ToDo Failed",
+    });
+  }
+};
+
+export let GetToDoByID = async (req: any, res: any) => {
+  try {
+    let id = req.params.id;
+    let todo = await ToDo.findById(id);
+    res.status(200).json({
+      status: "success",
+      data: {
+        todo,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "failed",
+      msg: "GET ERROR: Get ToDo By ID Error",
+    });
   }
 };
